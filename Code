@@ -1,0 +1,49 @@
+# IMPORTING LIBRARIES
+import string
+import sys
+
+# PRINTING HEADER
+print(" PASSWORD CHECKER 🧑🏻‍💻 \n\n")
+
+# GETTING INPUT FROM USER
+def get_pwd():
+    while True:
+        pwd=input("Enter new password: ") 
+        check_pwd(pwd)
+
+
+# CHECKING STRENGTH OF PASSWORD
+def check_pwd(arg):
+    upper_prsnt=num_prsnt=special_prsnt=space_prsnt=False
+    count=0
+    for var in arg:
+        if var in string.ascii_uppercase:
+            upper_prsnt = True
+        elif var in string.digits:
+            num_prsnt=True
+        elif var in string.punctuation:
+            special_prsnt=True
+        elif var == " ":
+            space_prsnt=True
+        count+=1
+    remark(space_prsnt,count,upper_prsnt,num_prsnt,special_prsnt)
+
+# GIVING REMARKS ON PASSWORD 
+def remark(arg0,arg1,arg2,arg3,arg4):
+    if arg0==True:
+        print("Spaces are not allowed!")
+    elif arg1 < 7:
+        print("\nVery weak password! Use atleast 8 characters\n")    
+    elif arg2 == arg3 == arg4 == False or arg2 == False:
+        print("\nweak password! Include atleast 1 uppercase.\n")
+    elif arg3 == False:
+        print("\nNot a great password! Include atleast 1 numeric.\n ")
+    elif arg4 == False:
+        print("\nAverage password! Include atleast 1 special character.\n")
+    else:
+        print("\nPassword SET !")
+        sys.exit(0)
+
+
+# CALLING FUNCTION TO START THE MACHINE 
+get_pwd()
